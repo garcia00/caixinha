@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="layoutPagina">
+
+<section layout:fragment="conteudo">
+	<div class="panel-body">
+		<table class="table">
+			<thead class="table table-hover">
+				<tr>
+					<th class="col-4">Nome</th>
+					<th class="col-2">Contato</th>
+					<th class="col-4">Ação</th>
+					<th class="col-2">Depositar</th>
+					<th class="col-2">Saldo</th>
+				</tr>
+			<tbody>
+				<tr th:each="pessoa : ${pessoas}">
+					<td th:text="${pessoa.nome}" style="margin: 0 10px;"></td>
+					<td th:text="${pessoa.contato.numeroCelular}"></td>
+					<td><a class="btn btn-outline-primary" role="button"
+						th:href="@{/pessoas/{id}(id=${pessoa.id})}" title="Editar"
+						rel="tooltip" data-placement="top"><i class="fa fa-edit"></i>
+					</a></td>
+					
+					<td><a class="btn btn-outline-success"
+						th:href="@{/deposito/{id}(id=${pessoa.id})}" title="Depositar"><i
+							class="fas fa-dollar-sign"></i></a></td>
+							<td th:text="${pessoa.cota.saldo}"></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+	</div>
+
+</section>
+</html>

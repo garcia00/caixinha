@@ -14,6 +14,7 @@
 					<th class="col-4">Ação</th>
 					<th class="col-2">Depositar</th>
 					<th class="col-2">Saldo</th>
+					<th class="col-2">id-pessoa</th>
 				</tr>
 			<tbody>
 				<tr th:each="pessoa : ${pessoas}">
@@ -27,7 +28,8 @@
 					<td><a class="btn btn-outline-success"
 						th:href="@{/deposito/{id}(id=${pessoa.id})}" title="Depositar"><i
 							class="fas fa-dollar-sign"></i></a></td>
-							<td th:text="${pessoa.cota.saldo}"></td>
+							<!--<td th:text="${pessoa.cota.saldo}"></td>-->
+                     <td th:text="${pessoa.id}"></td>							
 				</tr>
 			</tbody>
 

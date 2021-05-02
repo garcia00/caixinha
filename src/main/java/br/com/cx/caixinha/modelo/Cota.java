@@ -27,10 +27,11 @@ public class Cota {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Pessoa pessoa;
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="cota")
-	private List<Transacao> transacoes;
-	
+	/*
+	 * @JsonIgnore
+	 * 
+	 * @OneToMany(mappedBy="cota") private List<Transacao> transacoes;
+	 */
 	@Column(nullable= false)
 	private BigDecimal saldo;
 	
@@ -50,13 +51,12 @@ public class Cota {
 		this.pessoa = pessoa;
 	}
 
-	public List<Transacao> getTransacoes() {
-		return transacoes;
-	}
-
-	public void setTransacoes(List<Transacao> transacoes) {
-		this.transacoes = transacoes;
-	}
+	/*
+	 * public List<Transacao> getTransacoes() { return transacoes; }
+	 * 
+	 * public void setTransacoes(List<Transacao> transacoes) { this.transacoes =
+	 * transacoes; }
+	 */
 
 	public BigDecimal getSaldo() {
 		return saldo;

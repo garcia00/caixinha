@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+import br.com.cx.caixinha.dominio.TipoTransacao;
+
 
 @Entity
 public class Transacao {
@@ -19,53 +21,71 @@ public class Transacao {
 	@Column(nullable = false, updatable = false)
 	private Long id;
 	
+	private TipoTransacao tipoTransacao;
+	private Date data;	
+	private BigDecimal valor;
+	private Integer anoMes;
+	
 	@ManyToOne
-	private Cota cota;
-	
-	private String tipoTransacao;
-	private Date data;
-	private BigDecimal quantia;
-	private BigDecimal saldoInicial;
-	private BigDecimal saldoFinal;
+	private Pessoa pessoa;
 	
 	
-	public Cota getCota() {
-		return cota;
-	}
-	public void setCota(Cota cota) {
-		this.cota = cota;
+	
+	
+	public Transacao(BigDecimal valor, Integer anoMes, Pessoa pessoa) {		
+		this.valor = valor;
+		this.anoMes = anoMes;
+		this.pessoa = pessoa;
 	}
 
-	public String getTipoTransacao() {
+	public Transacao aplicarDeposito() {
+		setTipoTransacao(TipoTransacao.DEPOSITO);
+		return this;
+		
+	}
+	
+	public Transacao aplicarEmprestimo() {
+		setTipoTransacao(TipoTransacao.EMPRESTIMO);
+		return this;
+		
+	}
+	public Boolean emprestimo() {
+		return getTipoTransacao().getDescricao().equals(TipoTransacao.EMPRESTIMO.getDescricao());
+	}
+	
+	public Boolean deposito() {
+		return getTipoTransacao().getDescricao().equals(TipoTransacao.DEPOSITO.getDescricao());
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
 	}
-	public void setTipoTransacao(String tipoTransacao) {
-		this.tipoTransacao = tipoTransacao;
-	}
+
 	public Date getData() {
 		return data;
 	}
-	public void setData(Date data) {
-		this.data = data;
+
+	public BigDecimal getValor() {
+		return valor;
 	}
-	public BigDecimal getQuantia() {
-		return quantia;
+
+	public Integer getAnoMes() {
+		return anoMes;
 	}
-	public void setQuantia(BigDecimal quantia) {
-		this.quantia = quantia;
+
+	public Pessoa getPessoa() {
+		return pessoa;
 	}
-	public BigDecimal getSaldoInicial() {
-		return saldoInicial;
+
+	public void setTipoTransacao(TipoTransacao tipoTransacao) {
+		this.tipoTransacao = tipoTransacao;
 	}
-	public void setSaldoInicial(BigDecimal saldoInicial) {
-		this.saldoInicial = saldoInicial;
-	}
-	public BigDecimal getSaldoFinal() {
-		return saldoFinal;
-	}
-	public void setSaldoFinal(BigDecimal saldoFinal) {
-		this.saldoFinal = saldoFinal;
-	}
+	
+	
 	
 
 }

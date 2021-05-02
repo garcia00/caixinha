@@ -1,5 +1,7 @@
 package br.com.cx.caixinha.modelo;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
@@ -28,11 +31,11 @@ public class Pessoa {
 	@NotNull
 	@Embedded
 	private Contato contato;
+	
+	@OneToMany(mappedBy="pessoa") 
+	private List<Transacao> transacoes;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "cota_id", referencedColumnName = "id")
-	private Cota cota;
-
+	
 	public String getNome() {
 		return nome;
 	}
@@ -63,20 +66,6 @@ public class Pessoa {
 		this.id = id;
 	}
 
-	public Cota getCota() {
-
-		if (this.cota == null) {
-
-			cota = new Cota();
-		}
-
-		return cota;
-	}
-
-	public void setCota(Cota cota) {
-		this.cota = cota;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -102,4 +91,12 @@ public class Pessoa {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + nome + ", contato=" + contato + ", transacoes=" + transacoes + "]";
+	}
+
+	
+	
+	
 }

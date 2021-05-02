@@ -5,7 +5,7 @@
 	layout:decorator="layoutPagina">
 
 <section layout:fragment="conteudo">
-	<form class="form-horizontal" method="POST" action="/cotas" th:object="${pessoa}">
+	<form class="form-horizontal" method="POST" action="/deposito/salvar" th:object="${transacaoFormRequest}">
 		<div class="container">
 			<div class="alert alert-success"
 				th:if="${!#strings.isEmpty(mensagem)}">
@@ -20,8 +20,8 @@
 				<div class="panel-body">
 					<div class="form-group">
 					<div class="col-sm-6">
-						<label for="nome">Cota</label> <input type="text"
-								class="form-control" th:field="*{nome}" placeholder="Nome">
+						<label for="nome">Cota</label> 
+						<input type="text"			class="form-control" th:field="*{pessoa.nome}" placeholder="Nome">
 						</div>
 						</div>
 					</div>
@@ -29,14 +29,13 @@
 						<label for="dataVencimento" class="col-sm-2 control-label">Data
 							de Pagamento</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="dataVencimento"
-								name="dataVencimento" />
+							<input type="text" class="form-control" id="dataVencimento"   th:field="*{anoMes}"  name="dataVencimento" />
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="valor" class="col-sm-6 control-label">Valor</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" th:field="*{cota.saldo}" id="valor" name="valor" />
+							<input type="text" class="form-control" th:field="*{valor}" id="valor" name="valor" />
 						</div>
 					</div>
 					<div class="form-group">

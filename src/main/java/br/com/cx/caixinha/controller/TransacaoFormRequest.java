@@ -20,7 +20,6 @@ public class TransacaoFormRequest {
 	
 	
 	public Transacao toModel() {
-
 		return new Transacao(this.valor,this.anoMes,this.getPessoa());
 	}
 	

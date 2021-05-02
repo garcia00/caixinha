@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,18 +23,23 @@ public class Transacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(nullable = false, updatable = false)
 	private Long id;
-	
+
+	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipoTransacao;
 	private Date data;	
 	private BigDecimal valor;
 	private Integer anoMes;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne
 	private Pessoa pessoa;
-	
-	
-	
-	
+
+	@Deprecated
+	public Transacao() {
+	}
+
+
+
+
 	public Transacao(BigDecimal valor, Integer anoMes, Pessoa pessoa) {		
 		this.valor = valor;
 		this.anoMes = anoMes;

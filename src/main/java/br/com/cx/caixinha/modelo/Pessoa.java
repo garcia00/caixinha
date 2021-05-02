@@ -1,5 +1,6 @@
 package br.com.cx.caixinha.modelo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -7,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class Pessoa {
 	@Embedded
 	private Contato contato;
 	
-	@OneToMany(mappedBy="pessoa") 
+	@OneToMany(mappedBy="pessoa",fetch = FetchType.EAGER)
 	private List<Transacao> transacoes;
 
 	
@@ -96,7 +98,11 @@ public class Pessoa {
 		return "Pessoa [id=" + id + ", nome=" + nome + ", contato=" + contato +"]";
 	}
 
-	
-	
-	
+
+	public List<Transacao> getTransacoes() {
+		if(transacoes == null){
+			transacoes = new ArrayList<>();
+		}
+		return transacoes;
+	}
 }

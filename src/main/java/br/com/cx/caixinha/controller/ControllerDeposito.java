@@ -1,35 +1,31 @@
 package br.com.cx.caixinha.controller;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import javax.transaction.Transactional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import br.com.cx.caixinha.modelo.Pessoa;
-import br.com.cx.caixinha.modelo.Transacao;
 import br.com.cx.caixinha.repository.Pessoas;
 import br.com.cx.caixinha.repository.Transacoes;
 import br.com.cx.caixinha.service.DepositoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+
+import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/deposito")
+@SessionAttributes(value = "transacaoFormRequest")
 public class ControllerDeposito {
 
 	@Autowired
@@ -63,25 +59,30 @@ public class ControllerDeposito {
 
     }
 
-
       return mv;
 	}
 
 
 	@PostMapping("/salvar")
 	@Transactional
-	public ModelAndView depositar(TransacaoFormRequest requestTransacao, HttpSession session) {
+	public ModelAndView depositar(@Valid @ModelAttribute("transacaoFormRequest") TransacaoFormRequest requestTransacao , BindingResult result) {
+		ModelAndView mv = null;
+			if(result.hasErrors()){
+
+				mv =new ModelAndView(PAGAMENTO_DEPOSITO);
 
 
-		ModelAndView mv = new ModelAndView(PESQUISAR_COTISTA);
+			}else {
 
+				transacoes.save(requestTransacao.toModel().aplicarDeposito());
 
-		requestTransacao.toModel();
+				mv =  new ModelAndView("redirect:/pessoas");
 
-		transacoes.save(requestTransacao.toModel().aplicarDeposito());
+			}
 
 
 		return mv;
+
 	}
 
 

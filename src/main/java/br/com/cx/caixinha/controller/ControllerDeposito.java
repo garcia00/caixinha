@@ -1,10 +1,13 @@
 package br.com.cx.caixinha.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,58 +31,59 @@ import br.com.cx.caixinha.service.DepositoService;
 @Controller
 @RequestMapping("/deposito")
 public class ControllerDeposito {
-	
+
 	@Autowired
 	private Pessoas pessoas;
-	
+
 	@Autowired
 	private Transacoes transacoes;
 
-	
+
 	@Autowired
 	private DepositoService depositoService;
-	
+
 	private static final String PAGAMENTO_DEPOSITO = "pagamentoDeposito";
 	private static final String PESQUISAR_COTISTA = "pesquisarCotista";
-	
-		
+
+
 	@GetMapping("{id}")
 	public ModelAndView novo(@PathVariable("id") Long id, HttpSession session) {
 		ModelAndView mv = new ModelAndView(PAGAMENTO_DEPOSITO);
-		
+
     Optional<Pessoa> pessoa = this.pessoas.findById(id);
-    
-    if(pessoa.isPresent()) {    	
+
+    if(pessoa.isPresent()) {
     	TransacaoFormRequest transacaoFormRequest = new TransacaoFormRequest();
     	transacaoFormRequest.setPessoa(pessoa.get());
+    	transacaoFormRequest.setAnoMes(Integer.valueOf(new SimpleDateFormat("MMYYYY").format(new Date())));
     	mv.addObject("transacaoFormRequest",transacaoFormRequest);
-    	session.setAttribute("cotista", pessoa.get());
+
     }else {
     	mv.addObject("transacaoFormRequest", new TransacaoFormRequest());
-    	    	    
+
     }
-    
-    
-	
-    
-	return mv;
+
+
+      return mv;
 	}
-	
-	
+
+
 	@PostMapping("/salvar")
-	public ModelAndView depositar(HttpServletRequest request,TransacaoFormRequest requestTransacao) {
-			
+	@Transactional
+	public ModelAndView depositar(TransacaoFormRequest requestTransacao, HttpSession session) {
+
 
 		ModelAndView mv = new ModelAndView(PESQUISAR_COTISTA);
 
-		
-		
-		requestTransacao.toModel( (Pessoa) request.getSession().getAttribute("cotista"));
-		
-		
+
+		requestTransacao.toModel();
+
+		transacoes.save(requestTransacao.toModel().aplicarDeposito());
+
+
 		return mv;
 	}
-	
-	
+
+
 
 }

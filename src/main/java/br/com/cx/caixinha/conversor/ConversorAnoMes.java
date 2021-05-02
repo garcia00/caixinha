@@ -8,8 +8,8 @@ public class ConversorAnoMes implements Converter<String, Integer> {
 
 	@Override
 	public Integer convert(String source) {
-		 System.out.println(source);
-		return null;
+		String[]  values = source.split("/");
+		return Integer.valueOf(values[1]+values[0]);
 	}
 	
 	

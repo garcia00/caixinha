@@ -19,10 +19,9 @@ public class TransacaoFormRequest {
 	
 	
 	
-	public Transacao toModel(Pessoa pessoa) {
-		
-		System.out.println(pessoa.toString());
-		return new Transacao(this.valor,this.anoMes,this.pessoa);
+	public Transacao toModel() {
+
+		return new Transacao(this.valor,this.anoMes,this.getPessoa());
 	}
 	
 	public Pessoa getPessoa() {

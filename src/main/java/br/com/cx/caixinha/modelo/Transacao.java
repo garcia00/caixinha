@@ -3,6 +3,7 @@ package br.com.cx.caixinha.modelo;
 import java.math.BigDecimal;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,7 +27,7 @@ public class Transacao {
 	private BigDecimal valor;
 	private Integer anoMes;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	private Pessoa pessoa;
 	
 	
@@ -36,6 +37,7 @@ public class Transacao {
 		this.valor = valor;
 		this.anoMes = anoMes;
 		this.pessoa = pessoa;
+		this.data = new Date();
 	}
 
 	public Transacao aplicarDeposito() {

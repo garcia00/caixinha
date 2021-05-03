@@ -1,7 +1,10 @@
 package br.com.cx.caixinha.controller;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import br.com.cx.caixinha.modelo.Transacao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -51,7 +54,21 @@ public class ControllerCotista {
 	public ModelAndView pesquisar() {
 		List<Pessoa> todasPessoas = pessoas.findAll();
 		ModelAndView mv = new ModelAndView("pesquisarCotista");
-		mv.addObject("pessoas",todasPessoas);
+
+
+		List<CotistaDetailResopnse> details =  new ArrayList<>();
+		for(Pessoa pessoa :todasPessoas){
+
+
+
+			details.add(new CotistaDetailResopnse(pessoa));
+
+
+		}
+
+
+
+		mv.addObject("pessoas",details);
 		return mv;
 		}
 	

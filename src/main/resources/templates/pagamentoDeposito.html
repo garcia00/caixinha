@@ -21,15 +21,14 @@
 					<div class="form-group">
 					<div class="col-sm-6">
 						<label for="nome">Cota</label> 
-						<input type="text"			class="form-control" th:field="*{pessoa.nome}" placeholder="Nome">
+						<input type="text"		id="nome"	class="form-control" th:field="*{pessoa.nome}" placeholder="Nome">
 						</div>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="dataVencimento" class="col-sm-2 control-label">Data
-							de Pagamento</label>
+						<label for="mesPagamento" class="col-sm-2 control-label ">Mês do Pagamento</label>
 						<div class="col-sm-2">
-							<input type="text" class="form-control" id="dataVencimento"   th:field="*{anoMes}"  name="dataVencimento" />
+							<input type="text" class="form-control  yearMonth"  d id="mesPagamento"   th:field="*{anoMes}"   name="mesPagamento" />
 						</div>
 					</div>
 					<div class="form-group">
@@ -54,6 +53,6 @@
 			</div>
 	</form>
 
-	<script src="/js/bootstrap.min.js"></script>
+
 </section>
 </html>

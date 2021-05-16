@@ -19,16 +19,17 @@
 			<tbody>
 				<tr th:each="pessoa : ${pessoas}">
 					<td th:text="${pessoa.nome}" style="margin: 0 10px;"></td>
-					<td th:text="${pessoa.contato.numeroCelular}"></td>
+					<td th:text="${pessoa.contato}"></td>
 					<td><a class="btn btn-outline-primary" role="button"
 						th:href="@{/pessoas/{id}(id=${pessoa.id})}" title="Editar"
 						rel="tooltip" data-placement="top"><i class="fa fa-edit"></i>
 					</a></td>
 					
 					<td><a class="btn btn-outline-success"
-						th:href="@{/deposito/{id}(id=${pessoa.id})}" title="Depositar"><i
+						   th:href="@{/deposito/{id}(id=${pessoa.id})}"
+						   title="Depositar"><i
 							class="fas fa-dollar-sign"></i></a></td>
-					<td th:text="${pessoa.cota.saldo}"></td>
+					<td th:text="${pessoa.saldo}"></td>
 
 				</tr>
 			</tbody>

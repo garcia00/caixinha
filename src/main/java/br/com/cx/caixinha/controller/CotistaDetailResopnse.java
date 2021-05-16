@@ -33,13 +33,23 @@ public class CotistaDetailResopnse {
 
     private BigDecimal calcularSaldo(Pessoa pessoa)  {
 
-         Optional<BigDecimal> totalDeposito = pessoa.getTransacoes().stream().filter(tr1->tr1.deposito()).map(Transacao::getValor).reduce(BigDecimal::add);
+         BigDecimal totalDeposito = pessoa
+                 .getTransacoes()
+                 .stream()
+                 .filter(tr1->tr1.deposito())
+                 .map(Transacao::getValor)
+                 .reduce(BigDecimal::add)
+                 .orElse(new BigDecimal("0"));
 
-//        Optional<BigDecimal> totalEmprestimo = pessoa.getTransacoes().stream().filter(tr1->tr1.emprestimo()).map(Transacao::getValor).reduce(BigDecimal::add);
+         BigDecimal totalEmprestimo = pessoa
+                 .getTransacoes()
+                 .stream()
+                 .filter(tr1->tr1.emprestimo())
+                 .map(Transacao::getValor)
+                 .reduce(BigDecimal::add)
+                 .orElse(new BigDecimal("0"));
 
-
-        return totalDeposito.get();
-
+        return totalDeposito.subtract(totalEmprestimo);
     }
 
 

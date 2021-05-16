@@ -1,17 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layoutPagina">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layoutPagina">
 
 <section layout:fragment="conteudo">
-	<form class="form-horizontal" method="POST" action="/pessoas"
-		th:object="${pessoa}">
-
+	<form class="form-horizontal" method="POST" action="/pessoas" th:object="${pessoa}">
 		<div class="panel-body">
 			<div class="container">
-				<div class="alert alert-success"
-					th:if="${!#strings.isEmpty(mensagem)}">
+				<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 					<span th:text="${mensagem}">Cotitas salvo com sucesso!!!</span>
 				</div>
 				<div class="alert alert-danger" th:if="${#fields.hasAnyErrors()}">
@@ -19,17 +14,18 @@
 						<span th:text="${detailedError.massage}">Erro no cadastro</span>
 					</div>
 				</div>
-				<div class="panel panel-warning">
-					<div class="panel-heading">
-						<h3 class="panel-title">Cadastro novo cotista</h3>
+				<div class="card">
+					<div class="card-header text-white teal lighten-2 mb-3">
+						Cadastro novo cotista
 					</div>
+					<div class="card-body">
 					<div class="form-row">
-						<div class="form-group col-md-6"
+						<div class="form-group col-md-12"
 							th:classappend="${#fields.hasErrors('nome')} ? has-error">
 							<label for="nome">Nome Completo</label> <input type="text"
 								class="form-control" th:field="*{nome}" placeholder="Nome">
 						</div>
-						<div class="form-group col-md-6"
+						<div class="form-group col-md-12"
 							th:classappend="${#fields.hasErrors('contato.email')} ? has-error">
 							<label for="inputAddress">Email</label> <input type="email"
 								class="form-control" placeholder="Email" id="email"
@@ -37,42 +33,39 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="form-group col-md-1"
+						<div class="form-group col-md-2"
 							th:classappend="${#fields.hasErrors('contato.numeroTelefone')} ? has-error">
 							<label for="ddd">DDD</label> <input type="text" maxlength="2"
 								class="form-control" id="ddd" th:field="*{contato.dddTelefone}">
 						</div>
-						<div class="form-group col-md-2"
+						<div class="form-group col-md-4"
 							th:classappend="${#fields.hasErrors('contato.numeroTelefone')} ? has-error">
 							<label for="telefone">Telefone</label> <input type="text"
 								maxlength="9" class="form-control" id="telefone"
 								th:field="*{contato.numeroTelefone}">
 						</div>
-					</div>
+					</div>					
 					<div class="form-row">
-						<div class="form-group col-md-1"
+						<div class="form-group col-md-2"
 							th:classappend="${#fields.hasErrors('contato.dddCelular')} ? has-error">
 							<label for="ddd1">DDD</label> <input type="text" maxlength="2"
 								class="form-control" id="ddd1" th:field="*{contato.dddCelular}">
 						</div>
-						<div class="form-group col-md-2"
+						<div class="form-group col-md-4"
 							th:classappend="${#fields.hasErrors('contato.numeroCelular')} ? has-error">
 							<label for="celular">Celular</label> <input type="text"
 								maxlength="9" class="form-control" id="celular"
 								th:field="*{contato.numeroCelular}">
 						</div>
-						<div class="form-group col-md-3">
-						</div>
-						<div class="form-group col-md-6">
-							<img class="img" src="/imagens/piggy.png"
-								alt="Card image cap">
+								
+					</div>
+					<div class="form-group col-md-5">
+							<button type="submit" class="btn btn-outline-success">Salvar
+					<i class="fa fa-save"></i></button>
 
 						</div>
 					</div>
-
-					<button type="submit" class="btn btn-primary">
-					 Salvar <i class="far fa-save"></i></button>
-				</div>
+			</div>
 			</div>
 		</div>
 	</form>

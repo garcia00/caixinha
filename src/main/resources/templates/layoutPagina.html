@@ -1,103 +1,60 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-<meta charset="UTF-8" />
-<title>Caixinha 2021</title>
-<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="/css/style.css" />
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
-</head>
+	<meta charset="UTF-8" />
+	<title>Caixinha 2021</title>
+	<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css">
+	<link type="text/css" rel="stylesheet" href="/css/materialize.min.css" media="screen,projection" />
 
+</head>
 
 <body>
 	<header>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<i class="lar la-money-bill-alt"></i>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#textoNavbar" aria-controls="textoNavbar"
-				aria-expanded="false" aria-label="Alterna navegação">
+		<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+				aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<div class="collapse navbar-collapse" id="textoNavbar">
+			<div class="collapse navbar-collapse navbar-dark" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" href="#">Home
-							<span class="sr-only">(Página atual)</span>
-					</a></li>
-					<li class="nav-item"><a class="nav-link" href="/pessoas/novo">Cadastro</a>
+					<li class="nav-item active">
+						<a class="nav-link" href="/home/index">Home <span class="sr-only">(atual)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/pessoas">Cotistas</a></li>
+					<li class="nav-item  active">
+						<a class="nav-link" href="/pessoas/novo">Cadastro</a>
+					</li>
+					<li class="nav-item  active">
+						<a class="nav-link " href="/pessoas">Cotistas</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
-	<br />
-	<div class="container">
-		<div class="card">
-			<div class="card-header"></div>
-			<div class="card-body">
-				<section layout:fragment="conteudo">
-					<p>Conteúdo principal</p>
-
-				</section>
-			</div>
-		</div>
-	</div>
+	<main role="main" class="container">
+		<section layout:fragment="conteudo">
+			<p>Conteúdo principal</p>
+		</section>
+	</main>
 </body>
 <!-- Footer -->
 <section class="footer">
-<footer class="bg-dark text-center text-white">
-	<!-- Copyright -->
-	<div class="text-center p-3"
-		style="background-color: rgba(0, 0, 0, 0.2);">
-		© 2021 Copyright: <a class="text-white"
-			href="https://mdbootstrap.com/">caixinha 2021</a>
+	<footer class="page-footer grey darken-4 text-center">
+	<div class="footer-copyright">
+            <div class="container">
+            © 2021 Copyright Caixinha
+          </div>
 	</div>
-	<!-- Copyright -->
-</footer>
+	</footer>
 </section>
 <!-- Footer -->
 <script src="/js/jquery-3.6.0.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>7
+<script src="/js/bootstrap.min.js"></script>
 <script src="/js/jquery.mask.min.js"></script>
-<script>
-	$(document).ready(function(){
-		$('.yearMonth').mask("0/0000", {placeholder:"__/____"});
-		// $('.date').mask('00/00/0000');
-		// $('.time').mask('00:00:00');
-		// $('.date_time').mask('00/00/0000 00:00:00');
-		// $('.cep').mask('00000-000');
-		// $('.phone').mask('0000-0000');
-		// $('.phone_with_ddd').mask('(00) 0000-0000');
-		// $('.phone_us').mask('(000) 000-0000');
-		// $('.mixed').mask('AAA 000-S0S');
-		// $('.cpf').mask('000.000.000-00', {reverse: true});
-		// $('.cnpj').mask('00.000.000/0000-00', {reverse: true});
-		// $('.money').mask('000.000.000.000.000,00', {reverse: true});
-		// $('.money2').mask("#.##0,00", {reverse: true});
-		// $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
-		// 	translation: {
-		// 		'Z': {
-		// 			pattern: /[0-9]/, optional: true
-		// 		}
-		// 	}
-		// });
-		// $('.ip_address').mask('099.099.099.099');
-		// $('.percent').mask('##0,00%', {reverse: true});
-		// $('.clear-if-not-match').mask("00/00/0000", {clearIfNotMatch: true});
-		// $('.placeholder').mask("00/00/0000", {placeholder: "__/__/____"});
-		// $('.fallback').mask("00r00r0000", {
-		// 	translation: {
-		// 		'r': {
-		// 			pattern: /[\/]/,
-		// 			fallback: '/'
-		// 		},
-		// 		placeholder: "__/__/____"
-		// 	}
-		// });
-		// $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
-	});
-</script>
+<script src="js/materialize.min.js"></script>
+
+
 </html>

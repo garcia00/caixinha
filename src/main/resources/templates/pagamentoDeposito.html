@@ -1,58 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layoutPagina">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layoutPagina">
 
 <section layout:fragment="conteudo">
 	<form class="form-horizontal" method="POST" action="/deposito/salvar" th:object="${transacaoFormRequest}">
 		<div class="container">
-			<div class="alert alert-success"
-				th:if="${!#strings.isEmpty(mensagem)}">
+			<div class="alert alert-success" th:if="${!#strings.isEmpty(mensagem)}">
 				<span th:text="${mensagem}">Título salvo com sucesso!!!</span>
 			</div>
 
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<h3 class="panel-title">Nova Cota</h3>
-				</div>
-				<br />
-				<div class="panel-body">
-					<div class="form-group">
+			<div class="card">
+				<div class="card-header text-white teal lighten-2">Pagamento de Cota</div>
+				<div class="card-body">
+				<div class="form-group">
 					<div class="col-sm-6">
-						<label for="nome">Cota</label> 
-						<input type="text"		id="nome"	class="form-control" th:field="*{pessoa.nome}" placeholder="Nome">
-						</div>
-						</div>
+						<input type="text" id="nome" class="form-control" th:field="*{pessoa.nome}" placeholder="Nome">
 					</div>
-					<div class="form-group">
-						<label for="mesPagamento" class="col-sm-2 control-label ">Mês do Pagamento</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control  yearMonth"  d id="mesPagamento"   th:field="*{anoMes}"   name="mesPagamento" />
-						</div>
+				</div>
+
+				<div class="form-group">
+					<label for="mesPagamento" class="col-sm-2 control-label ">Mês do Pagamento</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control  yearMonth" d id="mesPagamento" th:field="*{anoMes}"
+							name="mesPagamento" />
 					</div>
-					<div class="form-group">
-						<label for="valor" class="col-sm-6 control-label">Valor</label>
-						<div class="col-sm-2">
-							<input type="text" class="form-control" th:field="*{valor}" id="valor" name="valor" />
-						</div>
+				</div>
+				<div class="form-group">
+					<label for="valor" class="col-sm-6 control-label">Valor</label>
+					<div class="col-sm-2">
+						<input type="text" class="form-control" th:field="*{valor}" id="valor" name="valor" />
 					</div>
-					<div class="form-group">
-						
-					</div>
-					<div class="form-group">
-						<div class="col-sm-offset-2 col-sm-10">
-							<button type="submit" class="btn btn-success"  aria-label="true">
-								<span>Depositar</span>
-								<i class="fas fa-dollar-sign"></i></i>
-							</button>
-							<br/>
-						</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-success" aria-label="true">
+							<span>Depositar</span>
+							<i class="fas fa-dollar-sign"></i></i>
+						</button>
+						<br />
 					</div>
 				</div>
 			</div>
+			</div>
+		</div>
+		</div>
 	</form>
 
 
 </section>
+
 </html>

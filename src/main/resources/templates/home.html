@@ -1,10 +1,52 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layoutPagina">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layoutPagina">
 
 <section layout:fragment="conteudo">
-	
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="card mb-3">
+				<div class="card-header text-white teal lighten-2">Cotistas Cadastrados</div>
+				<div class="card-body">
+					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					<a href="/pessoas/novo" class="btn btn-outline-success">Acessar
+						<i class="fas fa-user-friends"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="card mb-3">
+			<div class="card-header text-white teal lighten-2">Saldo em Caixa</div>
+				<div class="card-body">
+					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					<a href="#" class="btn btn-outline-success">Acessar <i class="fas fa-search-dollar"></i></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="card mb-3">
+			<div class="card-header text-white teal lighten-2">Receber</div>
+				<div class="card-body">
+					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					<a href="#" class="btn btn-outline-success">Acessar <i class="fas fa-dollar-sign"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-6">
+			<div class="card mb-3">
+			<div class="card-header text-white teal lighten-2">Emprestar</div>
+				<div class="card-body">
+					<p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+					<a href="#" class="btn btn-outline-success">Acessar <i class="fas fa-hand-holding-usd"></i></a>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </section>
+
 </html>

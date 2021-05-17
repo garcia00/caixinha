@@ -1,10 +1,7 @@
 package br.com.cx.caixinha.controller;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-import br.com.cx.caixinha.modelo.Transacao;
+import br.com.cx.caixinha.modelo.Pessoa;
+import br.com.cx.caixinha.repository.Pessoas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
@@ -15,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import br.com.cx.caixinha.modelo.Pessoa;
-import br.com.cx.caixinha.repository.Pessoas;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/pessoas")

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="layoutPagina">
+
+<div class="modal fade" id="confirmacaoExclusaoModal" tabindex="-1" data-keyboard="false" data-backdrop="static">
+	<div class="modal-dialog">
+		<form action="/pessoas" name="POST">
+			<input type="hidden" name="_method" value="DELETE" />
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">
+						<h4 class="modal-title">Você tem certeza?</h4>
+					</button>
+				</div>
+				<div class="modal-body">
+					<span>Tem certeza qu deseja excluir o cotitas?</span>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-link" data-dismiss="modal">cancelar</button>
+					<button type="submit" class="btn btn-primary">Excluir</button>
+
+				</div>
+		</form>
+	</div>
+</div>
+
+</html>

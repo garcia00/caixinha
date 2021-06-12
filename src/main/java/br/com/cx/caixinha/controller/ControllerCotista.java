@@ -77,10 +77,10 @@ public class ControllerCotista {
 	}
 	
 	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable Pessoa id, RedirectAttributes attributes) {
-		pessoas.delete(id);
+	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
+		pessoas.deleteById(id);
 		
-		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Cotista excluído com sucesso!");
 		return PESQUISA_VIEW;
 	}
 	

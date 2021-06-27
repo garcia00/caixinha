@@ -8,9 +8,8 @@
 			<thead class="thead-dark">
 				<tr>
 					<th class="col-4">Nome</th>
-					<th class="col-2">Contato</th>
 					<th class="col-4">Editar</th>
-					<th class="col-4">Excluir</th>
+					<th class="col-4">Emprestimo</th>
 					<th class="col-2">Depositar</th>
 					<th class="col-2">Saldo</th>
 
@@ -19,18 +18,13 @@
 			<tbody>
 				<tr th:each="pessoa : ${pessoas}">
 					<td th:text="${pessoa.nome}"></td>
-					<td th:text="${pessoa.contato}"></td>
 					<td class="text-center"><a class="btn btn-outline-primary" role="button"
 							th:href="@{/pessoas/{id}(id=${pessoa.id})}" title="Editar" rel="tooltip"
 							data-placement="top"><i class="fa fa-edit"></i>
 					</td>
-					<td class="text-center">
-						<a class="btn btn-outline-danger" data-toggle="modal" data-target="#confirmacaoExclusaoModal"
-							th:attr="data-codigo=${pessoa.id}, data-descricao=${pessoa.nome}" title="Excluir"
-							rel="tooltip" data-placement="top">
-							<i class="fa fa-ban"></i>
-						</a>
-					</td>
+					<td class="text-center"><a class="btn btn-outline-success"
+							th:href="@{/emprestimo/{id}(id=${pessoa.id})}" title="Emprestimo"><i
+								class="fas fa-search-dollar"></i></a></td>
 					<td class="text-center"><a class="btn btn-outline-success"
 							th:href="@{/deposito/{id}(id=${pessoa.id})}" title="Depositar"><i
 								class="fas fa-dollar-sign"></i></a></td>
@@ -40,6 +34,12 @@
 					<td colspan="6" th:if="${#lists.isEmpty(pessoas)}">Nenhum título foi encontrado</td>
 	   				</tr>
 			</tbody>
+			<tfoot>
+  <tr>
+     <td colspan="2">Em Caixa</td>
+     <td th:text="${#numbers.formatCurrency(#aggregates.sum(pessoas.![saldo]))}"></td>
+  </tr>
+</tfoot>
 
 		</table>
 	</div>

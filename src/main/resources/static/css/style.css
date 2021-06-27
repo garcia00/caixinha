@@ -49,6 +49,17 @@ nav {
 
 .card {
 	
-box-shadow: 1px 1px 2px black, 0 0 5px rgb(192, 192, 192), 0 0 1px darkblue;
+box-shadow: 1px 1px 1px black, 0 0 2px rgb(192, 192, 192), 0 0 1px darkblue;
+transition: all .2s ease-in-out; 
 
+
+
+}
+
+.grow { 
+transition: all .1s ease-in-out; 
+}
+
+.card:hover { 
+transform: scale(1.1); 
 }

@@ -6,14 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/pessoas")
@@ -36,15 +39,15 @@ public class ControllerCotista {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public String salvar(@Validated Pessoa pessoa, Errors erros) {
-		ModelAndView mv = new ModelAndView(PESQUISA_VIEW);
+	public String salvar(@Validated Pessoa pessoa, Errors erros, RedirectAttributes attributes) {
+		
 		if(erros.hasErrors()) {
 			return CADASTRO_VIEW;
 		}
 		
 		pessoas.save(pessoa);
-		mv.addObject("mensagem", "Cotista salvo com sucesso!");
-		return "redirect:/pessoas/novo";
+		attributes.addFlashAttribute("mensagem", "Cotista salvo com sucesso!");
+		return "redirect:/pessoas";
 	}
 	
 	@RequestMapping
@@ -52,18 +55,12 @@ public class ControllerCotista {
 		List<Pessoa> todasPessoas = pessoas.findAll();
 		ModelAndView mv = new ModelAndView("pesquisarCotista");
 
-
 		List<CotistaDetailResopnse> details =  new ArrayList<>();
 		for(Pessoa pessoa :todasPessoas){
 
-
-
 			details.add(new CotistaDetailResopnse(pessoa));
 
-
 		}
-
-
 
 		mv.addObject("pessoas",details);
 		return mv;
@@ -76,8 +73,8 @@ public class ControllerCotista {
 		return mv;
 	}
 	
-	@RequestMapping(value="{id}", method = RequestMethod.DELETE)
-	public String excluir(@PathVariable Long id, RedirectAttributes attributes) {
+	@RequestMapping(value="pessoas/excluir", method= RequestMethod.POST)
+	public String excluir(@RequestParam("id") Long id, RedirectAttributes attributes) {
 		pessoas.deleteById(id);
 		
 		attributes.addFlashAttribute("mensagem", "Cotista excluído com sucesso!");

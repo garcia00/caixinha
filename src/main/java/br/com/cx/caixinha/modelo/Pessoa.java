@@ -34,6 +34,10 @@ public class Pessoa {
 	@Embedded
 	private Contato contato;
 	
+	@NotNull
+	@Embedded
+	private Endereco endereco;
+	
 	@OneToMany(mappedBy="pessoa",fetch = FetchType.EAGER)
 	private List<Transacao> transacoes;
 
@@ -104,5 +108,13 @@ public class Pessoa {
 			transacoes = new ArrayList<>();
 		}
 		return transacoes;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 }

@@ -57,9 +57,34 @@
 							<label for="celular">Celular</label> <input type="text"
 								maxlength="9" class="form-control" id="celular"
 								th:field="*{contato.numeroCelular}">
-						</div>
-								
+						</div>		
 					</div>
+					<div class="form-row">
+						<div class="form-group col-md-10"
+							th:classappend="${#fields.hasErrors('endereco.rua')} ? has-error">
+							<label for="rua">Rua</label> <input type="text"
+								class="form-control" id="rua" th:field="*{endereco.rua}">
+						</div>
+						<div class="form-group col-md-2"
+							th:classappend="${#fields.hasErrors('endereco.numero')} ? has-error">
+							<label for="rua">Numero</label> <input type="text"
+							 class="form-control" id="telefone"
+								th:field="*{endereco.numero}">
+						</div>
+					</div>	
+					<div class="form-row">
+						<div class="form-group col-md-7"
+							th:classappend="${#fields.hasErrors('endereco.bairro')} ? has-error">
+							<label for="bairro">Bairro</label> <input type="text" 
+								class="form-control" id="bairro" th:field="*{endereco.bairro}">
+						</div>
+						<div class="form-group col-md-5"
+							th:classappend="${#fields.hasErrors('endereco.cidade')} ? has-error">
+							<label for="cidade">Cidade</label> <input type="text"
+								 class="form-control" id="cidade"
+								th:field="*{endereco.cidade}">
+						</div>
+					</div>		
 					<div class="form-group col-md-5">
 							<button type="submit" class="btn btn-outline-success">Salvar
 					<i class="fa fa-save"></i></button>
